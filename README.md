@@ -157,13 +157,13 @@ npm install
 ## 📈 Outcomes
 This project includes:
 
-Role-based UI rendering
-Secure login system with JWT
-Real-time store ratings
-Interactive dashboards
-Fully responsive UI
-Sorting, filtering, and user management
-Database schema with relational structure
+* Role-based UI rendering
+* Secure login system with JWT
+* Real-time store ratings
+* Interactive dashboards
+* Fully responsive UI
+* Sorting, filtering, and user management
+* Database schema with relational structure
 
 ## 🤝 Contributing
 Contributions, suggestions, and improvements are welcome!
