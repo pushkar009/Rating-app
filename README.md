@@ -1,4 +1,4 @@
-⭐ Store Rating Platform
+# ⭐ Store Rating Platform
 
 A full-stack web application that enables users to rate stores, manage accounts, and interact with a role-based dashboard system. Built with React, Node.js/Express, and PostgreSQL, this project demonstrates practical implementation of authentication, role-based authorization, database modeling, and dynamic UI rendering.
 
