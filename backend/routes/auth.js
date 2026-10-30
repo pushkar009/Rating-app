@@ -167,7 +167,14 @@ router.get("/store/:storeName", async (req, res) => {
 });
 
 // ADD USER (ADMIN ONLY)
-router.post("/add-user", async (req, res) => {
+const requireAdmin = (req, res, next) => {
+  if (req.user?.role !== "admin") {
+    return res.status(403).json({ message: "Admin access required" });
+  }
+  next();
+};
+
+router.post("/add-user", authenticateToken, requireAdmin, async (req, res) => {
   const { username, email, address, password, role } = req.body;
 
   try {
@@ -315,7 +322,8 @@ router.post("/register",
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
 
-    const { username, email, password, role, address } = req.body;
+    const { username, email, password, address } = req.body;
+    const role = req.body.role == "store-owner" ? "store-owner" : "user";
 
     try {
       const hashedPassword = await bcrypt.hash(password, 10);
