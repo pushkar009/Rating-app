@@ -60,7 +60,7 @@ const Login = () => {
           {error && (
             <div className="error" >{error}</div>
           )}
-          <button type="submit" style={{ width: "100%" }}> Login </button>
+          <button type="submit" style={{ width: "90%" }}> Login </button>
         </form>
         <p>
           Don't have an account?{" "}
