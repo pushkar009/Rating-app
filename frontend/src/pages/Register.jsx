@@ -84,7 +84,7 @@ const Register = () => {
             {error && (
             <div className="error">{error}</div>
             )}
-            <button type="submit" style={{ width: "100%" }}> Register </button>
+            <button type="submit" style={{ width: "90%" }}> Register </button>
           </form>
           <p>
             Already have an account? 
