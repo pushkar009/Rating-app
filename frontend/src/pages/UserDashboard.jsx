@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import NavBar from "../components/NavBar";
 import { AuthContext } from "../context/AuthContext";
-import axios from "axios";
+import { api } from "../api";
 import StoreCard from "../components/StoreCard";
 
 const UserDashboard = () => {
@@ -11,7 +11,7 @@ const UserDashboard = () => {
 
     const fetchStores = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/auth/search?query=${searchQuery}`);
+            const res = await api.get(`/auth/search?query=${searchQuery}`);
             setStores(res.data.stores || []);
         } catch (err) {
             console.error("Failed to fetch filtered data:", err);
@@ -25,8 +25,8 @@ const UserDashboard = () => {
     const submitRating = async (storeName, stars, userRatingObj) => {
         try {
             const method = userRatingObj ? "PATCH" : "POST";
-            await axios[method.toLowerCase()](
-                "http://localhost:5000/auth/rate", 
+            await api[method.toLowerCase()](
+                "/auth/rate", 
                 { store_name: storeName, stars },
                 { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
             );

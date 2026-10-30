@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../components/NavBar";
-import axios from "axios";
+import { api } from "../api";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import "primereact/resources/themes/lara-light-blue/theme.css";
@@ -22,7 +22,7 @@ const AdminDashboard = () => {
   });
   const fetchFilteredData = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/auth/search?query=${searchQuery}`);
+      const res = await api.get(`/auth/search?query=${searchQuery}`);
       setUsers(res.data.users);
       setStores(res.data.stores);
     } catch (err) {
@@ -32,7 +32,7 @@ const AdminDashboard = () => {
 
   const fetchTotalRatings = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/auth/ratings/total");
+      const res = await api.get("/auth/ratings/total");
       setTotalRatings(res.data.total_ratings);
     } catch (err) {
       console.error("Failed to fetch total ratings:", err);
@@ -53,7 +53,7 @@ const AdminDashboard = () => {
   const addNewUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/auth/add-user", formData);
+      await api.post("/auth/add-user", formData);
       alert("User added successfully!");
     } catch (err) {
       console.error("Failed to add user:", err);

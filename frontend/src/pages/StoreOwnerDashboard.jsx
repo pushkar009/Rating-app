@@ -17,8 +17,8 @@ const StoreOwnerDashboard = () => {
 
   useEffect(() => {
     if (user?.username) {
-      axios
-        .get(`http://localhost:5000/auth/store/${user.username}`)
+      api
+        .get(`/auth/store/${user.username}`)
         .then((res) => {
           console.log("Fetched store data:", res.data);
           setStoreData(res.data);

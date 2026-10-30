@@ -25,7 +25,7 @@ const Register = () => {
     e.preventDefault();
     const { username, email, password, address } = formData;
     try {
-      const res = await axios.post("http://localhost:5000/auth/register", { username, email, password, role: "user", address });
+      const res = await api.post("/auth/register", { username, email, password, role: "user", address });
       alert("Registration successful! Please log in.");
       navigate("/user");
     } catch (err) {
@@ -84,7 +84,7 @@ const Register = () => {
             {error && (
             <div className="error">{error}</div>
             )}
-            <button type="submit"> Register </button>
+            <button type="submit" style={{ width: "100%" }}> Register </button>
           </form>
           <p>
             Already have an account? 

@@ -1,4 +1,4 @@
-import axios from "axios";
+import { api } from "../api";
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +18,7 @@ const Login = () => {
     e.preventDefault();
     setError("");
     try {
-      const res = await axios.post("http://localhost:5000/auth/login", { username, password, });
+      const res = await api.post("/auth/login", { username, password });
       login(res.data.user);
       localStorage.setItem("token", res.data.token);
       setUsername('');
@@ -27,7 +27,7 @@ const Login = () => {
       else if (res.data.user.role === "store-owner") navigate("/store-owner");
       else navigate("/user");
     } catch (err) {
-      // console.error("Login Error:", err);  Logging the full error for debugging
+      // console.error("Login Error:", err);  Logging the full error for debugging in console
       setError(err.response?.data?.error || "Login failed. Please check your credentials.");
     }
   };
@@ -60,7 +60,7 @@ const Login = () => {
           {error && (
             <div className="error" >{error}</div>
           )}
-          <button type="submit"> Login </button>
+          <button type="submit" style={{ width: "100%" }}> Login </button>
         </form>
         <p>
           Don't have an account?{" "}

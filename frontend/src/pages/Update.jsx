@@ -1,7 +1,7 @@
 // src/pages/Update.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { api } from "../api";
 
 const UpdatePassword = () => {
   const navigate = useNavigate();
@@ -29,8 +29,8 @@ const UpdatePassword = () => {
     try {
       const token = localStorage.getItem("token");
   
-      await axios.patch(
-        "http://localhost:5000/auth/update-password",
+      await api.patch(
+        "/auth/update-password",
         {
           currentPassword: formData.currentPassword,
           newPassword: formData.newPassword,
